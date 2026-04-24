@@ -13,9 +13,10 @@ function ChannelDivider({ label, desc }) {
   return (
     <div className="channel-divider">
       <div className="channel-divider__icon">#</div>
-      <h2 className="channel-divider__name">{label}</h2>
-      {desc && <p className="channel-divider__desc">{desc}</p>}
-      <div className="channel-divider__line" />
+      <div className="channel-divider__info">
+        <h2 className="channel-divider__name">{label}</h2>
+        {desc && <p className="channel-divider__desc">{desc}</p>}
+      </div>
     </div>
   )
 }
@@ -65,7 +66,7 @@ const SKILL_DATA = [
   { category: 'AI',              items: ['Claude', 'Claude Code', 'Prompt Engineering'] },
 ]
 
-export default function ChatArea({ activeChannel, setActiveChannel, setVisibleChannels }) {
+export default function ChatArea({ setActiveChannel, setVisibleChannels }) {
   const [selectedProject, setSelectedProject] = useState(null)
 
   const reveal = (id) =>
@@ -76,7 +77,6 @@ export default function ChatArea({ activeChannel, setActiveChannel, setVisibleCh
       const el = document.getElementById(id)
       if (!el) return
 
-      // 채널 사이드바에 채널 등장
       ScrollTrigger.create({
         trigger: el,
         start: 'top 85%',
@@ -84,7 +84,6 @@ export default function ChatArea({ activeChannel, setActiveChannel, setVisibleCh
         onEnter: () => reveal(id),
       })
 
-      // 활성 채널 추적
       ScrollTrigger.create({
         trigger: el,
         start: 'top 45%',
@@ -93,7 +92,6 @@ export default function ChatArea({ activeChannel, setActiveChannel, setVisibleCh
         onEnterBack: () => setActiveChannel(id),
       })
 
-      // 메시지 등장 애니메이션
       gsap.fromTo(
         el.querySelectorAll('.message, .skill-embed, .project-embed, .contact-embed, .project-card'),
         { y: 18, opacity: 0 },
@@ -120,26 +118,6 @@ export default function ChatArea({ activeChannel, setActiveChannel, setVisibleCh
       />
     )}
     <div className="chat-area">
-      {/* 상단 헤더 */}
-      <header className="chat-header">
-        <div className="chat-header__left">
-          {CHANNELS.map(({ id, label }) => (
-            <button
-              key={id}
-              className={`chat-header__tab ${activeChannel === id ? 'chat-header__tab--active' : ''}`}
-              onClick={() => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })}
-            >
-              <span className="chat-header__tab-hash">#</span>
-              {label}
-            </button>
-          ))}
-        </div>
-        <div className="chat-header__actions">
-          <button>🔍</button>
-          <button>📌</button>
-          <button>👥</button>
-        </div>
-      </header>
 
       {/* ─── #welcome ─── */}
       <section id="welcome" className="channel-section">
