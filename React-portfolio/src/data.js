@@ -1,0 +1,50 @@
+export const CHANNELS = [
+  { id: 'welcome',  label: 'welcome'  },
+  { id: 'about-me', label: 'about-me' },
+  { id: 'skills',   label: 'skills'   },
+  { id: 'projects', label: 'projects' },
+  { id: 'contact',  label: 'contact'  },
+]
+
+export const PROJECTS = [
+  {
+    title: '쇼핑몰 리디자인',
+    category: 'E-Commerce',
+    desc: '사용자 구매 경험 개선을 위한 전면 UI 리디자인. 전환율 35% 향상.',
+    longDesc: '기존 쇼핑몰의 복잡한 구매 플로우를 단순화하고, 모바일 퍼스트 접근으로 전면 재설계했습니다. Figma 시안을 픽셀 퍼펙트하게 구현했으며 GSAP으로 부드러운 페이지 전환과 장바구니 인터랙션을 추가했습니다.',
+    tags: ['React', 'GSAP', 'Figma', 'SCSS'],
+    color: '#5865f2',
+    github: '#',
+    demo: '#',
+  },
+  {
+    title: '기업 홈페이지',
+    category: 'Corporate Website',
+    desc: '스크롤 인터랙션과 GSAP 애니메이션으로 브랜드 아이덴티티 강화.',
+    longDesc: 'ScrollTrigger를 활용한 시네마틱 스크롤 경험을 구현했습니다. 각 섹션마다 독립적인 애니메이션 시퀀스를 설계하고, Swiper로 팀 소개 및 포트폴리오 슬라이더를 제작했습니다.',
+    tags: ['HTML5', 'GSAP', 'Swiper', 'SCSS'],
+    color: '#eb459e',
+    github: '#',
+    demo: '#',
+  },
+  {
+    title: '모바일 앱 UI',
+    category: 'Mobile Publishing',
+    desc: 'iOS/Android 앱 디자인 시안을 React 웹뷰로 픽셀 퍼펙트 퍼블리싱.',
+    longDesc: 'Figma로 전달받은 모바일 앱 디자인 시안을 React 기반 웹뷰로 완벽하게 구현했습니다. 다양한 디바이스 해상도 대응과 네이티브 앱과 동일한 제스처 인터랙션 구현에 집중했습니다.',
+    tags: ['React', 'TypeScript', 'CSS Modules'],
+    color: '#57f287',
+    github: '#',
+    demo: '#',
+  },
+  {
+    title: '브랜드 랜딩페이지',
+    category: 'Landing Page',
+    desc: '신규 브랜드 런칭을 위한 풀스크린 인터랙티브 랜딩 페이지.',
+    longDesc: '브랜드 런칭 이벤트를 위해 기획부터 퍼블리싱까지 단독으로 진행했습니다. GSAP timeline으로 로딩 인트로 시퀀스를 제작하고, ScrollTrigger pin 기능으로 몰입감 있는 스크롤 경험을 구현했습니다.',
+    tags: ['GSAP', 'ScrollTrigger', 'Vite', 'SCSS'],
+    color: '#fee75c',
+    github: '#',
+    demo: '#',
+  },
+]

@@ -1,0 +1,20 @@
+// Discord-inspired charcoal palette
+$server-bg:  #1c1a18;   // 서버 아이콘바 (가장 어두움)
+$channel-bg: #252220;   // 채널 사이드바
+$bg:         #2e2b28;   // 채팅 영역
+$surface:    #383430;   // 카드, 호버 배경
+$hover:      #34302c;   // 채널 호버
+$active-bg:  #3d3935;   // 활성 채널
+$accent:     #e8b84b;   // 골드 포인트
+$text:       #f0ede8;   // 기본 텍스트
+$muted:      #9a948e;   // 타임스탬프, 설명
+$border:     #1a1816;   // 구분선
+$online:     #23a559;   // 온라인 상태
+
+// Typography
+$font-serif: 'Playfair Display', serif;
+$font-sans:  'Inter', sans-serif;
+
+// Layout
+$server-w:  72px;
+$channel-w: 240px;

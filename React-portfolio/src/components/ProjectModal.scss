@@ -1,0 +1,187 @@
+@use '../styles/variables' as *;
+
+// ── 오버레이 ─────────────────────────────────────────────
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(#000, 0.75);
+  backdrop-filter: blur(4px);
+  z-index: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+// ── 모달 카드 ────────────────────────────────────────────
+.project-modal {
+  position: relative;
+  width: 100%;
+  max-width: 700px;
+  background: $channel-bg;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 24px 80px rgba(#000, 0.6);
+
+  // 상단 컬러 바
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--modal-color, #{$accent});
+    z-index: 2;
+  }
+
+  // ── 프리뷰 영역 ──────────────────────────────────────
+  &__preview {
+    position: relative;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 28px;
+    overflow: hidden;
+  }
+
+  &__preview-bg {
+    position: absolute;
+    inset: 0;
+    background: $surface;
+
+    // 포인트 컬러 그라데이션 오버레이
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        135deg,
+        rgba(var(--modal-color, #{$accent}), 0.12) 0%,
+        rgba(#000, 0.5) 100%
+      );
+    }
+  }
+
+  &__category {
+    position: relative;
+    z-index: 1;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--modal-color, #{$accent});
+    margin-bottom: 8px;
+  }
+
+  &__title {
+    position: relative;
+    z-index: 1;
+    font-family: $font-serif;
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    font-weight: 700;
+    color: $text;
+    line-height: 1.1;
+  }
+
+  // ── 콘텐츠 영역 ──────────────────────────────────────
+  &__content {
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  &__desc {
+    font-size: 0.9rem;
+    line-height: 1.75;
+    color: rgba($text, 0.75);
+  }
+
+  &__section {}
+
+  &__label {
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: $muted;
+    margin-bottom: 10px;
+  }
+
+  &__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+
+    span {
+      font-size: 0.78rem;
+      padding: 4px 12px;
+      background: $bg;
+      border: 1px solid $border;
+      border-radius: 4px;
+      color: $text;
+    }
+  }
+
+  &__actions {
+    display: flex;
+    gap: 10px;
+    padding-top: 4px;
+  }
+
+  // ── 닫기 버튼 ────────────────────────────────────────
+  &__close {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    width: 32px;
+    height: 32px;
+    background: rgba($bg, 0.6);
+    border: none;
+    border-radius: 50%;
+    color: $muted;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: none;
+    z-index: 10;
+    transition: background 0.2s, color 0.2s;
+
+    &:hover {
+      background: $bg;
+      color: $text;
+    }
+  }
+}
+
+// ── 액션 버튼 ────────────────────────────────────────────
+.modal-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 9px 20px;
+  border-radius: 4px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: none;
+  transition: opacity 0.2s, background 0.2s;
+
+  &--ghost {
+    background: $surface;
+    color: $text;
+    border: 1px solid $border;
+
+    &:hover { background: $hover; }
+  }
+
+  &--fill {
+    background: var(--modal-color, #{$accent});
+    color: $server-bg;
+    border: none;
+    font-weight: 700;
+
+    &:hover { opacity: 0.85; }
+  }
+}

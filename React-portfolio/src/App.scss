@@ -1,0 +1,6 @@
+@use './styles/variables' as *;
+
+.discord-layout {
+  display: flex;
+  min-height: 100vh;
+}

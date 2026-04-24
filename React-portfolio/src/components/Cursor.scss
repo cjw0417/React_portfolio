@@ -1,0 +1,19 @@
+@use '../styles/variables' as *;
+
+.cursor-arrow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 9999;
+  will-change: transform;
+
+  svg {
+    display: block;
+    filter: drop-shadow(0 1px 3px rgba(#000, 0.5));
+  }
+
+  @media (hover: none) {
+    display: none;
+  }
+}

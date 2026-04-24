@@ -1,0 +1,411 @@
+@use '../styles/variables' as *;
+
+// ── 채팅 영역 레이아웃 ──────────────────────────────────
+.chat-area {
+  margin-left: calc(#{$server-w} + #{$channel-w});
+  flex: 1;
+  background: $bg;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+
+// ── 채널 섹션 ────────────────────────────────────────────
+.channel-section {
+  padding: 24px 0 40px;
+
+  & + & {
+    border-top: 1px solid rgba($border, 0.6);
+  }
+}
+
+// ── 채널 디바이더 ────────────────────────────────────────
+.channel-divider {
+  padding: 20px 16px 16px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+
+  &__icon {
+    width: 48px;
+    height: 48px;
+    flex-shrink: 0;
+    background: $surface;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: $muted;
+  }
+
+  &__info {
+    flex: 1;
+    min-width: 0;
+  }
+
+  &__name {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: $text;
+    margin-bottom: 2px;
+  }
+
+  &__desc {
+    font-size: 0.82rem;
+    color: $muted;
+  }
+
+  &__line {
+    display: none;
+  }
+}
+
+// ── 스탯 배지 ────────────────────────────────────────────
+.stat-row {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.stat-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: $surface;
+  border-radius: 8px;
+  padding: 12px 20px;
+  min-width: 80px;
+
+  strong {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: $accent;
+    font-family: $font-serif;
+    line-height: 1;
+  }
+
+  span {
+    font-size: 0.7rem;
+    color: $muted;
+    margin-top: 4px;
+    letter-spacing: 0.05em;
+  }
+}
+
+// ── 스킬 임베드 ──────────────────────────────────────────
+.skill-embed {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: $surface;
+  border-radius: 8px;
+  padding: 16px;
+  max-width: 480px;
+
+  &__category {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: $muted;
+    margin-bottom: 6px;
+  }
+
+  &__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  &__tag {
+    background: $bg;
+    color: $text;
+    font-size: 0.78rem;
+    padding: 3px 10px;
+    border-radius: 4px;
+    border: 1px solid $border;
+  }
+}
+
+// ── 프로젝트 임베드 ──────────────────────────────────────
+.project-embed {
+  display: flex;
+  background: $surface;
+  border-radius: 4px;
+  overflow: hidden;
+  max-width: 440px;
+
+  &__bar {
+    width: 4px;
+    flex-shrink: 0;
+    background: var(--embed-color, #{$accent});
+  }
+
+  &__body {
+    padding: 12px 16px;
+    flex: 1;
+  }
+
+  &__category {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--embed-color, #{$accent});
+    margin-bottom: 4px;
+  }
+
+  &__title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: $text;
+    margin-bottom: 6px;
+  }
+
+  &__desc {
+    font-size: 0.82rem;
+    color: $muted;
+    line-height: 1.5;
+    margin-bottom: 10px;
+  }
+
+  &__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+
+    span {
+      background: $bg;
+      color: $muted;
+      font-size: 0.7rem;
+      padding: 2px 8px;
+      border-radius: 3px;
+    }
+  }
+}
+
+// ── 컨택트 임베드 ────────────────────────────────────────
+.contact-embed {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: $surface;
+  border-radius: 8px;
+  padding: 16px;
+  max-width: 440px;
+
+  &__field {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+
+    label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: $muted;
+    }
+
+    input,
+    textarea {
+      background: $bg;
+      border: 1px solid $border;
+      border-radius: 4px;
+      padding: 8px 12px;
+      color: $text;
+      font-family: $font-sans;
+      font-size: 0.88rem;
+      outline: none;
+      transition: border-color 0.2s;
+      cursor: none;
+
+      &::placeholder { color: rgba($muted, 0.5); }
+      &:focus { border-color: $accent; }
+    }
+
+    textarea {
+      resize: none;
+      height: 80px;
+    }
+  }
+
+  button {
+    align-self: flex-start;
+    background: $accent;
+    color: $server-bg;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 20px;
+    font-family: $font-sans;
+    font-size: 0.82rem;
+    font-weight: 700;
+    cursor: none;
+    transition: opacity 0.2s;
+
+    &:hover { opacity: 0.85; }
+  }
+}
+
+// ── 푸터 ─────────────────────────────────────────────────
+.chat-footer {
+  padding: 32px 16px 16px;
+  color: $muted;
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+}
+
+// ── 풀페이지 섹션 ─────────────────────────────────────────
+.channel-section--full {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+// ── 프로젝트 그리드 ──────────────────────────────────────
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2px;
+  flex: 1;
+  margin-top: 8px;
+  min-height: 0;
+}
+
+.project-card {
+  position: relative;
+  overflow: hidden;
+  min-height: 280px;
+  display: flex;
+  align-items: flex-end;
+  cursor: none;
+
+  // 호버 시 클릭 가능 힌트
+  &:hover &__body::after {
+    opacity: 1;
+  }
+
+  &__body::after {
+    content: '클릭하여 자세히 보기';
+    position: absolute;
+    bottom: 28px;
+    right: 24px;
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    color: rgba($text, 0.5);
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+
+  &__bg {
+    position: absolute;
+    inset: 0;
+    background: $surface;
+    transition: transform 0.5s ease;
+
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        160deg,
+        rgba(var(--card-rgb), 0.18) 0%,
+        rgba(#000, 0.55) 100%
+      );
+    }
+  }
+
+  &:hover &__bg {
+    transform: scale(1.04);
+  }
+
+  // 컬러 오버레이 (CSS custom property 활용)
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--card-color, #{$accent});
+    opacity: 0.08;
+    transition: opacity 0.3s;
+    z-index: 1;
+  }
+
+  &:hover::before {
+    opacity: 0.15;
+  }
+
+  // 왼쪽 컬러 바
+  &::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: var(--card-color, #{$accent});
+    z-index: 2;
+  }
+
+  &__body {
+    position: relative;
+    z-index: 3;
+    padding: 24px 24px 28px;
+    width: 100%;
+  }
+
+  &__category {
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--card-color, #{$accent});
+    margin-bottom: 6px;
+  }
+
+  &__title {
+    font-family: $font-serif;
+    font-size: clamp(1.1rem, 2vw, 1.5rem);
+    font-weight: 700;
+    color: $text;
+    margin-bottom: 8px;
+    line-height: 1.2;
+  }
+
+  &__desc {
+    font-size: 0.82rem;
+    color: rgba($text, 0.6);
+    line-height: 1.55;
+    margin-bottom: 14px;
+    max-width: 340px;
+  }
+
+  &__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+
+    span {
+      font-size: 0.68rem;
+      padding: 3px 9px;
+      border: 1px solid rgba($text, 0.15);
+      border-radius: 3px;
+      color: rgba($text, 0.55);
+    }
+  }
+
+  &__num {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    font-family: $font-serif;
+    font-size: 4.5rem;
+    font-weight: 700;
+    color: rgba($text, 0.04);
+    line-height: 1;
+    z-index: 2;
+    user-select: none;
+  }
+}

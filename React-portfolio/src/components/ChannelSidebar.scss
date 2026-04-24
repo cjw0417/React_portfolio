@@ -1,0 +1,176 @@
+@use '../styles/variables' as *;
+
+.channel-sidebar {
+  position: fixed;
+  left: $server-w;
+  top: 0;
+  bottom: 0;
+  width: $channel-w;
+  background: $channel-bg;
+  display: flex;
+  flex-direction: column;
+  z-index: 199;
+  overflow: hidden;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 16px;
+    height: 48px;
+    border-bottom: 1px solid $border;
+    flex-shrink: 0;
+    cursor: none;
+
+    &:hover {
+      background: $hover;
+    }
+  }
+
+  &__server-name {
+    font-weight: 600;
+    font-size: 0.9rem;
+    letter-spacing: 0.01em;
+    color: $text;
+  }
+
+  &__section {
+    padding: 16px 8px 8px;
+    flex: 1;
+    overflow-y: auto;
+
+    &::-webkit-scrollbar { width: 4px; }
+    &::-webkit-scrollbar-thumb { background: $border; border-radius: 2px; }
+  }
+
+  &__category {
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    color: $muted;
+    padding: 0 8px;
+    margin-bottom: 4px;
+  }
+
+  &__user {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px;
+    background: $server-bg;
+    flex-shrink: 0;
+  }
+}
+
+.channel-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+  padding: 6px 8px;
+  background: transparent;
+  border: none;
+  border-radius: 4px;
+  color: $muted;
+  font-family: $font-sans;
+  font-size: 0.9rem;
+  cursor: none;
+  text-align: left;
+  transition: background 0.15s, color 0.15s;
+  position: relative;
+
+  .channel-icon { flex-shrink: 0; opacity: 0.6; }
+
+  &:hover {
+    background: $hover;
+    color: $text;
+
+    .channel-icon { opacity: 0.8; }
+  }
+
+  &--active {
+    background: $active-bg;
+    color: $text;
+    font-weight: 500;
+
+    .channel-icon { opacity: 1; }
+  }
+
+  &__dot {
+    width: 6px;
+    height: 6px;
+    background: $accent;
+    border-radius: 50%;
+    margin-left: auto;
+    flex-shrink: 0;
+  }
+}
+
+.user-avatar {
+  width: 32px;
+  height: 32px;
+  background: $accent;
+  color: $server-bg;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.65rem;
+  font-weight: 700;
+  position: relative;
+  flex-shrink: 0;
+
+  &__status {
+    position: absolute;
+    bottom: -1px;
+    right: -1px;
+    width: 10px;
+    height: 10px;
+    background: $online;
+    border-radius: 50%;
+    border: 2px solid $server-bg;
+  }
+}
+
+.user-info {
+  flex: 1;
+  min-width: 0;
+
+  &__name {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: $text;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &__status {
+    font-size: 0.68rem;
+    color: $online;
+  }
+}
+
+.user-controls {
+  display: flex;
+  gap: 2px;
+
+  button {
+    width: 28px;
+    height: 28px;
+    background: transparent;
+    border: none;
+    border-radius: 4px;
+    color: $muted;
+    cursor: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.15s, color 0.15s;
+
+    &:hover {
+      background: $hover;
+      color: $text;
+    }
+  }
+}

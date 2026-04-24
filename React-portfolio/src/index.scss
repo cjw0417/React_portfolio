@@ -1,0 +1,34 @@
+@use './styles/variables' as *;
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: $server-bg;
+  color: $text;
+  font-family: $font-sans;
+  overflow-x: hidden;
+  cursor: none;
+  -webkit-font-smoothing: antialiased;
+
+  @media (hover: none) { cursor: auto; }
+}
+
+::selection {
+  background: $accent;
+  color: $server-bg;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}

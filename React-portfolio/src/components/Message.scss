@@ -1,0 +1,80 @@
+@use '../styles/variables' as *;
+
+.message {
+  display: flex;
+  gap: 16px;
+  padding: 2px 16px;
+  border-radius: 4px;
+  transition: background 0.1s;
+
+  &:hover {
+    background: rgba($surface, 0.6);
+  }
+
+  &--grouped {
+    padding-top: 1px;
+    padding-bottom: 1px;
+  }
+
+  &__avatar {
+    width: 40px;
+    height: 40px;
+    background: $accent;
+    color: $server-bg;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.72rem;
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  &__avatar-gap {
+    width: 40px;
+    flex-shrink: 0;
+  }
+
+  &__body {
+    flex: 1;
+    min-width: 0;
+  }
+
+  &__meta {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    margin-bottom: 4px;
+  }
+
+  &__username {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: $accent;
+  }
+
+  &__time {
+    font-size: 0.68rem;
+    color: $muted;
+  }
+
+  &__content {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: $text;
+    word-break: break-word;
+
+    p + p { margin-top: 4px; }
+
+    strong {
+      color: $text;
+      font-weight: 600;
+    }
+
+    a {
+      color: #00aff4;
+      &:hover { text-decoration: underline; }
+    }
+  }
+}
