@@ -11,7 +11,7 @@ function HashIcon() {
   )
 }
 
-export default function ChannelSidebar({ activeChannel, visibleChannels }) {
+export default function ChannelSidebar({ activeChannel, visibleChannels, setActiveChannel }) {
   const prevLengthRef = useRef(1)
 
   useEffect(() => {
@@ -30,6 +30,7 @@ export default function ChannelSidebar({ activeChannel, visibleChannels }) {
   }, [visibleChannels])
 
   const scrollTo = (id) => {
+    setActiveChannel(id)
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
   }
 

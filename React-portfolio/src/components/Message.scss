@@ -11,6 +11,10 @@
     background: rgba($surface, 0.6);
   }
 
+  & + &:not(&--grouped) {
+    margin-top: 20px;
+  }
+
   &--grouped {
     padding-top: 1px;
     padding-bottom: 1px;

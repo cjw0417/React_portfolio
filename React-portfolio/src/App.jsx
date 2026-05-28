@@ -17,6 +17,7 @@ function App() {
         <ChannelSidebar
           activeChannel={activeChannel}
           visibleChannels={visibleChannels}
+          setActiveChannel={setActiveChannel}
         />
         <ChatArea
           setActiveChannel={setActiveChannel}

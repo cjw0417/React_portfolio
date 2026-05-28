@@ -58,6 +58,51 @@ function ContactEmbed() {
   )
 }
 
+const TECH_STACK = [
+  { name: 'HTML',       abbr: 'H5', color: '#E34F26' },
+  { name: 'CSS3',       abbr: 'C3', color: '#1572B6' },
+  { name: 'JavaScript', abbr: 'JS', color: '#F7DF1E', dark: true },
+  { name: 'jQuery',     abbr: 'jQ', color: '#0769AD' },
+  { name: 'Vue.js',     abbr: 'V',  color: '#42B883' },
+  { name: 'Figma',      abbr: 'F',  color: '#F24E1E' },
+  { name: 'Photoshop',  abbr: 'Ps', color: '#31A8FF' },
+]
+
+const VALUES = ['사용자 중심', '꼼꼼함', '소통', '문제 해결']
+
+function AboutEmbed() {
+  return (
+    <div className="about-embed">
+      <div className="about-embed__section">
+        <p className="about-embed__label">주요 경력</p>
+        <div className="career-item">
+          <span className="career-item__period">2022~현재</span>
+          <span className="career-item__company">(주)미디어포스 얼라이언스 재직중</span>
+        </div>
+      </div>
+      <div className="about-embed__section">
+        <p className="about-embed__label">기술 스택</p>
+        <div className="tech-grid">
+          {TECH_STACK.map(({ name, abbr, color, dark }) => (
+            <div key={name} className="tech-badge">
+              <span className="tech-badge__icon" style={{ background: color, color: dark ? '#1a1a1a' : '#fff' }}>{abbr}</span>
+              <span className="tech-badge__name">{name}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div className="about-embed__section">
+        <p className="about-embed__label">가치관 &amp; 키워드</p>
+        <div className="value-tags">
+          {VALUES.map(v => (
+            <span key={v} className="value-tag">{v}</span>
+          ))}
+        </div>
+      </div>
+    </div>
+  )
+}
+
 const SKILL_DATA = [
   { category: 'Markup / Style',  items: ['HTML5', 'CSS3', 'SCSS', 'Tailwind'] },
   { category: 'Script',          items: ['JavaScript', 'TypeScript', 'React'] },
@@ -86,8 +131,8 @@ export default function ChatArea({ setActiveChannel, setVisibleChannels }) {
 
       ScrollTrigger.create({
         trigger: el,
-        start: 'top 45%',
-        end: 'bottom 45%',
+        start: 'top 30%',
+        end: 'bottom 30%',
         onEnter:     () => setActiveChannel(id),
         onEnterBack: () => setActiveChannel(id),
       })
@@ -118,7 +163,7 @@ export default function ChatArea({ setActiveChannel, setVisibleChannels }) {
       />
     )}
     <div className="chat-area">
-
+ 
       {/* ─── #welcome ─── */}
       <section id="welcome" className="channel-section">
         <ChannelDivider label="welcome" desc="Jaewoo Cho의 포트폴리오 서버에 오신 걸 환영해요!" />
@@ -141,20 +186,24 @@ export default function ChatArea({ setActiveChannel, setVisibleChannels }) {
       <section id="about-me" className="channel-section">
         <ChannelDivider label="about-me" desc="저에 대해 더 알아보세요" />
         <Message time="오전 10:10">
-          저는 Figma 시안을 보는 순간 퍼블리싱 구조가 그려지는 사람이에요.
+          안녕하세요.
         </Message>
         <Message time="오전 10:10" grouped>
-          세심한 디테일과 성능 최적화를 놓치지 않으면서도 빠른 작업 속도로 팀에 기여합니다.
+          5년차 웹 퍼블리셔, <strong>조재우</strong>입니다.
         </Message>
         <Message time="오전 10:11" grouped>
-          디자인과 개발 모두를 이해하기 때문에 커뮤니케이션 비용을 최소화할 수 있어요.
+          HTML, CSS, JavaScript, Figma 등 다양한 툴을 활용하며,<br />
+          사용자 중심의 UI/UX와 팀원과의 원활한 협업을 중요하게 생각합니다.
         </Message>
-        <Message time="오전 10:12">
-          <div className="stat-row">
-            <div className="stat-badge"><strong>3+</strong><span>Years Exp.</span></div>
-            <div className="stat-badge"><strong>20+</strong><span>Projects</span></div>
-            <div className="stat-badge"><strong>10+</strong><span>Clients</span></div>
-          </div>
+        <Message time="오전 10:12" grouped>
+          새로운 기술과 변화에 항상 열린 마음으로 도전하며,<br />
+          더 나은 결과를 위해 꾸준히 성장하고 있습니다.
+        </Message>
+        <Message time="오전 10:13" grouped>
+          <blockquote className="about-quote">"프로젝트의 시작부터 끝까지 책임지는 퍼블리셔가 되겠습니다."</blockquote>
+        </Message>
+        <Message time="오전 10:14">
+          <AboutEmbed />
         </Message>
       </section>
 
@@ -212,8 +261,8 @@ export default function ChatArea({ setActiveChannel, setVisibleChannels }) {
         </Message>
         <Message time="오전 10:42">
           또는 직접 연락하셔도 좋아요 →{' '}
-          <a href="https://github.com" target="_blank" rel="noreferrer">GitHub</a>{' · '}
-          <a href="mailto:hello@example.com">Email</a>
+          <a href="https://github.com/cjw04" target="_blank" rel="noreferrer">GitHub</a>{' · '}
+          <a href="mailto:ridshfwk34@gmail.com">Email</a>
         </Message>
         <div className="chat-footer">
           <p>© 2025 조재우. All rights reserved.</p>
