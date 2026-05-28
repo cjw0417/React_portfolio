@@ -8,6 +8,7 @@ import './App.scss'
 function App() {
   const [activeChannel, setActiveChannel] = useState('welcome')
   const [visibleChannels, setVisibleChannels] = useState(['welcome'])
+  const [navOpen, setNavOpen] = useState(false)
 
   return (
     <>
@@ -18,6 +19,8 @@ function App() {
           activeChannel={activeChannel}
           visibleChannels={visibleChannels}
           setActiveChannel={setActiveChannel}
+          navOpen={navOpen}
+          setNavOpen={setNavOpen}
         />
         <ChatArea
           setActiveChannel={setActiveChannel}

@@ -110,6 +110,43 @@ const SKILL_DATA = [
   { category: 'AI',              items: ['Claude', 'Claude Code', 'Prompt Engineering'] },
 ]
 
+const isTouch = () => window.matchMedia('(hover: none)').matches
+
+const handleCardEnter = (e) => {
+  if (isTouch()) return
+  const card = e.currentTarget
+  const grid = card.closest('.project-grid')
+  if (!grid) return
+
+  const cardRect = card.getBoundingClientRect()
+  const gridRect = grid.getBoundingClientRect()
+
+  const deltaX = (gridRect.left + gridRect.width / 2) - (cardRect.left + cardRect.width / 2)
+  const deltaY = (gridRect.top + gridRect.height / 2) - (cardRect.top + cardRect.height / 2)
+
+  gsap.set(card, { zIndex: 100 })
+  gsap.to(card, {
+    x: deltaX,
+    y: deltaY,
+    scale: 1.6,
+    duration: 0.45,
+    ease: 'power3.out',
+  })
+}
+
+const handleCardLeave = (e) => {
+  if (isTouch()) return
+  const card = e.currentTarget
+  gsap.to(card, {
+    x: 0,
+    y: 0,
+    scale: 1,
+    duration: 0.4,
+    ease: 'power2.inOut',
+    onComplete: () => gsap.set(card, { zIndex: 1 }),
+  })
+}
+
 const handleProjectClick = (p) => {
   if (!p.link || p.link === '#') return
   if (p.linkType === 'mobile') {
@@ -166,41 +203,41 @@ export default function ChatArea({ setActiveChannel, setVisibleChannels }) {
  
       {/* ─── #welcome ─── */}
       <section id="welcome" className="channel-section">
-        <ChannelDivider label="welcome" desc="Jaewoo Cho의 포트폴리오 서버에 오신 걸 환영해요!" />
+        <ChannelDivider label="welcome" desc="들어오셨군요, 편하게 구경하세요 👋" />
         <Message time="오전 10:00">
-          안녕하세요! 저는 <strong>조재우</strong>입니다. 👋
+          안녕하세요, <strong>조재우</strong>예요 👋
         </Message>
         <Message time="오전 10:00" grouped>
-          UI/UX 퍼블리셔로 디자인과 개발의 경계를 잇는 작업을 하고 있어요.
+          퍼블리셔로 일하고 있어요. 쉽게 말하면 디자인 시안 받아서 코드로 구현하는 사람이에요 ㅎ
         </Message>
         <Message time="오전 10:01" grouped>
-          픽셀 퍼펙트한 구현과 부드러운 인터랙션이 저의 강점입니다 ✨
+          요즘은 인터랙션이랑 애니메이션 쪽에 재미 붙여서 이것저것 만들어보고 있고요.
         </Message>
         <Message time="오전 10:02">
-          아래 채널들을 둘러보시면서 저의 작업을 확인해보세요. 😊
+          스크롤 내리면서 구경해주세요 🙏
         </Message>
         <TypingIndicator />
       </section>
 
       {/* ─── #about-me ─── */}
       <section id="about-me" className="channel-section">
-        <ChannelDivider label="about-me" desc="저에 대해 더 알아보세요" />
+        <ChannelDivider label="about-me" desc="저 어떤 사람인지 궁금하시면" />
         <Message time="오전 10:10">
-          안녕하세요.
+          네, 안녕하세요.
         </Message>
         <Message time="오전 10:10" grouped>
-          5년차 웹 퍼블리셔, <strong>조재우</strong>입니다.
+          (주)미디어포스 얼라이언스에서 퍼블리셔로 일하고 있는 <strong>조재우</strong>예요.
         </Message>
         <Message time="오전 10:11" grouped>
-          HTML, CSS, JavaScript, Figma 등 다양한 툴을 활용하며,<br />
-          사용자 중심의 UI/UX와 팀원과의 원활한 협업을 중요하게 생각합니다.
+          신한카드 운영으로 시작했는데 어쩌다 보니 금융권 프로젝트가 계속 이어지더라고요 ㅋㅋ<br />
+          덕분에 복잡한 UI 구조 다루는 건 꽤 익숙해졌어요.
         </Message>
         <Message time="오전 10:12" grouped>
-          새로운 기술과 변화에 항상 열린 마음으로 도전하며,<br />
-          더 나은 결과를 위해 꾸준히 성장하고 있습니다.
+          마크업이 그냥 껍데기라는 생각은 없어요.<br />
+          결국 사용자가 직접 보고 만지는 부분이라서, 꼼꼼하게 짚고 넘어가는 편이에요.
         </Message>
         <Message time="오전 10:13" grouped>
-          <blockquote className="about-quote">"프로젝트의 시작부터 끝까지 책임지는 퍼블리셔가 되겠습니다."</blockquote>
+          <blockquote className="about-quote">"디자인 시안이 들어오면 '어떻게 구현하지'보다 '어떻게 하면 더 잘 만들 수 있지'를 먼저 생각해요."</blockquote>
         </Message>
         <Message time="오전 10:14">
           <AboutEmbed />
@@ -209,27 +246,27 @@ export default function ChatArea({ setActiveChannel, setVisibleChannels }) {
 
       {/* ─── #skills ─── */}
       <section id="skills" className="channel-section">
-        <ChannelDivider label="skills" desc="주로 사용하는 기술 스택" />
+        <ChannelDivider label="skills" desc="뭘 쓰는지 궁금하면" />
         <Message time="오전 10:20">
-          제가 주로 사용하는 기술들이에요 🛠️
+          쓰는 기술들이에요 🛠️
         </Message>
         <Message time="오전 10:20" grouped>
           <SkillEmbed skills={SKILL_DATA} />
         </Message>
         <Message time="오전 10:21">
-          퍼블리셔로서 HTML/CSS의 기초를 탄탄히 하면서 React와 GSAP으로 인터랙션까지 구현합니다.
+          HTML/CSS가 베이스고요, 요즘은 React랑 GSAP 쓰는 프로젝트가 많아져서 점점 재밌어지고 있어요 ㅎ
         </Message>
       </section>
 
       {/* ─── #projects ─── */}
       <section id="projects" className="channel-section channel-section--full">
-        <ChannelDivider label="projects" desc="최근 진행한 프로젝트들" />
+        <ChannelDivider label="projects" desc="작업한 것들" />
         <Message time="오전 10:30">
-          최근 작업한 프로젝트들을 공유할게요 📎
+          작업한 프로젝트들이에요 📎
         </Message>
         <div className="project-grid">
           {PROJECTS.map((p, i) => (
-            <div key={i} className="project-card" style={{ '--card-color': p.color }} onClick={() => handleProjectClick(p)}>
+            <div key={i} className="project-card" style={{ '--card-color': p.color }} onClick={() => handleProjectClick(p)} onMouseEnter={handleCardEnter} onMouseLeave={handleCardLeave}>
               <div className="project-card__bg" style={p.image ? { backgroundImage: `url(${p.image})` } : {}} />
               <div className="project-card__body">
                 <p className="project-card__category">{p.category}</p>
@@ -250,20 +287,19 @@ export default function ChatArea({ setActiveChannel, setVisibleChannels }) {
 
       {/* ─── #contact ─── */}
       <section id="contact" className="channel-section">
-        <ChannelDivider label="contact" desc="함께 멋진 것을 만들어봐요" />
+        <ChannelDivider label="contact" desc="연락 주세요" />
         <Message time="오전 10:40">
-          협업이나 프로젝트 문의를 기다리고 있어요! 📬
+          같이 뭔가 만들어보고 싶으시거나, 궁금한 거 있으면 편하게 연락주세요 📬
         </Message>
         <Message time="오전 10:40" grouped>
-          아래 폼으로 메시지를 남겨주시면 빠르게 답변드릴게요.
+          폼 쓰셔도 되고, 그냥 메일 주셔도 돼요. 빠르게 답장할게요 ㅎㅎ
         </Message>
         <Message time="오전 10:41">
           <ContactEmbed />
         </Message>
         <Message time="오전 10:42">
-          또는 직접 연락하셔도 좋아요 →{' '}
           <a href="https://github.com/cjw04" target="_blank" rel="noreferrer">GitHub</a>{' · '}
-          <a href="mailto:ridshfwk34@gmail.com">Email</a>
+          <a href="mailto:ridshfwk34@gmail.com">ridshfwk34@gmail.com</a>
         </Message>
         <div className="chat-footer">
           <p>© 2025 조재우. All rights reserved.</p>

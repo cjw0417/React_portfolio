@@ -51,4 +51,15 @@ export const PROJECTS = [
     linkType: 'url',
     link: 'https://card.nonghyup.com',
   },
+  {
+    title: '하나은행 서비스 고도화',
+    category: 'React',
+    period: '2025.05 ~ 현재',
+    desc: '하나은행 웹 서비스 고도화 퍼블리싱',
+    tags: ['React', 'SCSS', 'Figma'],
+    color: '#00927B',
+    image: '',
+    linkType: 'url',
+    link: 'https://www.hanabank.com',
+  },
 ]

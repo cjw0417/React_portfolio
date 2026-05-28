@@ -141,3 +141,7 @@
     }
   }
 }
+
+@media (max-width: 767px) {
+  .server-bar { display: none !important; }
+}

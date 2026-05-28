@@ -23,6 +23,12 @@ body {
   @media (hover: none) { cursor: auto; }
 }
 
+@media (hover: none), (pointer: coarse) {
+  * { cursor: auto !important; }
+  button, a, [role='button'], label { cursor: pointer !important; }
+  input, textarea, select { cursor: text !important; }
+}
+
 ::selection {
   background: $accent;
   color: $server-bg;
