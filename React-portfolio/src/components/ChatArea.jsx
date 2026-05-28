@@ -1,10 +1,9 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { CHANNELS, PROJECTS } from '../data'
 import Message from './Message'
 import TypingIndicator from './TypingIndicator'
-import ProjectModal from './ProjectModal'
 import './ChatArea.scss'
 
 gsap.registerPlugin(ScrollTrigger)
@@ -111,9 +110,16 @@ const SKILL_DATA = [
   { category: 'AI',              items: ['Claude', 'Claude Code', 'Prompt Engineering'] },
 ]
 
-export default function ChatArea({ setActiveChannel, setVisibleChannels }) {
-  const [selectedProject, setSelectedProject] = useState(null)
+const handleProjectClick = (p) => {
+  if (!p.link || p.link === '#') return
+  if (p.linkType === 'mobile') {
+    window.open(p.link, 'ocr-preview', 'width=375,height=812,noopener')
+  } else {
+    window.open(p.link, '_blank', 'noopener')
+  }
+}
 
+export default function ChatArea({ setActiveChannel, setVisibleChannels }) {
   const reveal = (id) =>
     setVisibleChannels(prev => prev.includes(id) ? prev : [...prev, id])
 
@@ -156,12 +162,6 @@ export default function ChatArea({ setActiveChannel, setVisibleChannels }) {
 
   return (
     <>
-    {selectedProject && (
-      <ProjectModal
-        project={selectedProject}
-        onClose={() => setSelectedProject(null)}
-      />
-    )}
     <div className="chat-area">
  
       {/* ─── #welcome ─── */}
@@ -229,10 +229,11 @@ export default function ChatArea({ setActiveChannel, setVisibleChannels }) {
         </Message>
         <div className="project-grid">
           {PROJECTS.map((p, i) => (
-            <div key={i} className="project-card" style={{ '--card-color': p.color }} onClick={() => setSelectedProject(p)}>
-              <div className="project-card__bg" />
+            <div key={i} className="project-card" style={{ '--card-color': p.color }} onClick={() => handleProjectClick(p)}>
+              <div className="project-card__bg" style={p.image ? { backgroundImage: `url(${p.image})` } : {}} />
               <div className="project-card__body">
                 <p className="project-card__category">{p.category}</p>
+                {p.period && <p className="project-card__period">{p.period}</p>}
                 <h3 className="project-card__title">{p.title}</h3>
                 <p className="project-card__desc">{p.desc}</p>
                 <div className="project-card__tags">

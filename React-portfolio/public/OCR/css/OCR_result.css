@@ -1,0 +1,159 @@
+.new_idscan {
+  display: flex;
+  position: relative;
+  width: 100%;
+  justify-content: center;
+  margin: 40px auto;
+}
+.new_idscan::before {
+  content: '';
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  left: 50px;
+  background: url(/OCR/img/top_left.png) no-repeat;
+  background-size: cover;
+}
+.new_idscan::after {
+  content: '';
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  right: 50px;
+  background: url(/OCR/img/top_right.png) no-repeat;
+  background-size: cover;
+}
+
+.new_idscan img {
+  display: block;
+  margin: 16px 0;
+  width: 100%;
+  padding: 0 68px;
+}
+.new_idscan .license_scan::before {
+  content: '';
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  left: 50px;
+  bottom: 0;
+  background: url(/OCR/img/bottom_left.png) no-repeat;
+  background-size: cover;
+}
+.new_idscan .license_scan::after {
+  content: '';
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  right: 50px;
+  bottom: 0;
+  background: url(/OCR/img/bottom_right.png) no-repeat;
+  background-size: cover;
+}
+
+/* 신분증 스캔 */
+.id_card_scan .scan_area {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  animation: scan01 6s linear infinite;
+}
+.id_card_scan .scan_bar {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  z-index: 5;
+  transform: translateX(-50%);
+  width: 85%;
+  height: 4px;
+  border-radius: 4px;
+  background: #476eff;
+  animation: scan02 6s linear infinite;
+}
+@keyframes scan01 {
+  0%,
+  100% {
+    height: 2%;
+  }
+  50% {
+    height: 90%;
+  }
+}
+@keyframes scan02 {
+  0%,
+  100% {
+    top: 2%;
+  }
+  50% {
+    top: 90%;
+  }
+}
+
+.idscan_tit2 .idscan_txtbl {
+  color: #479eff;
+}
+
+.pop-new .fixed-btn {
+  overflow: hidden;
+  position: absolute;
+  z-index: 11;
+  bottom: 0;
+  left: 17px;
+  right: 17px;
+  margin-top: 0;
+  padding: 16px 0;
+  text-align: center;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255) 14.37%,
+    rgb(255, 255, 255) 20%
+  );
+}
+.btn_group {
+  display: flex;
+  position: relative;
+  justify-content: center;
+}
+.fixed-btn .btn_wrap {
+  display: flex;
+}
+.btn {
+  overflow: hidden;
+  display: inline-block;
+  position: relative;
+  height: 48px;
+  border-radius: 8px;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  line-height: 0;
+}
+.chk_result .btn.left {
+  width: 96px;
+  height: 48px;
+  border-radius: 8px;
+}
+.chk_result .btn.left span {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 16px;
+  text-align: center;
+  color: #494f60;
+}
+
+.chk_result .btn.blue {
+  height: 48px;
+  border-radius: 8px;
+}
+.chk_result .btn.blue span {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 16px;
+  text-align: center;
+}
+.chk_result .btn + .btn {
+  margin-left: 8px;
+}

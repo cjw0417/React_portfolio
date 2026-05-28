@@ -1,0 +1,354 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>신분증 본인확인</title>
+
+    <!-- css -->
+    <link rel="stylesheet" href="/OCR/css/reset.css" />
+    <link rel="stylesheet" href="/OCR/css/OCR main.css" />
+    <link rel="stylesheet" href="/OCR/js/jquery.mobile-1.3.2.min.css" />
+    <link rel="stylesheet" href="/OCR/js/jquery.mobile-1.3.2.css" />
+
+    <!-- jQuery 라이브러리 -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="/OCR/js/OCR_main.js"></script>
+  </head>
+
+  <body>
+    <style>
+      .pop-new .popup .sbj_list.sbj_nationalist {
+        padding: 0 20px 40px;
+      }
+
+      .pop-new .popup .sbj_list.sbj_nationalist .national_wrap {
+        display: flex;
+        width: 100%;
+        margin-top: 24px;
+        border-radius: 50px;
+        background: #f1f1f3;
+      }
+
+      .pop-new .popup .sbj_list.sbj_nationalist .national_wrap .sbj_nationalist {
+        width: 100%;
+      }
+
+      .pop-new .popup .sbj_list.sbj_nationalist .national_wrap .sbj_localist {
+        width: 100%;
+      }
+
+      .pop-new .popup .sbj_list.sbj_nationalist .national_wrap .sbj_alienist {
+        width: 100%;
+      }
+
+      .pop-new .popup .sbj_list.sbj_nationalist .national_wrap .sbj_localist {
+        width: 100%;
+      }
+
+      .pop-new .popup .sbj_list.sbj_nationalist .national_wrap button {
+        width: 100%;
+        height: 36px;
+        font-size: 14px;
+        font-weight: 700;
+        line-height: 14px;
+        border-radius: 50px;
+        color: #888;
+      }
+
+      .pop-new .popup .sbj_list.sbj_nationalist .national_wrap button:active {
+        background: #ffffff;
+        color: #000;
+      }
+
+      .pop-new .popup .sbj_list.sbj_nationalist .national_wrap button.active {
+        background-color: #DDDDDD;
+        color: #000;
+      }
+    </style>
+    <div id="skipNavi" aria-hidden="true">
+      <a href="#container">본문바로가기</a>
+    </div>
+    <div id="Sbjpop01" class="pop_wrap pop-new medium">
+      <article class="popup sbj_bottom">
+        <div class="pop_head">
+          <h3>신분증 인증할 방법을 선택해주세요</h3>
+        </div>
+
+        <!--  레이어팝업 최대 높이값 600px 초과시 그라데이션 생성 -->
+        <div class="gradient_over"></div>
+        <!--  //레이어팝업 최대 높이값 600px 초과시 그라데이션 생성 -->
+
+        <div class="pop_cont chs_id" tabindex="0">
+          <div class="inner">
+            <!-- 신분증 이미지 예시 -->
+            <div class="license-img-wrap">
+              <div class="license-img">
+                <img src="/OCR/img/idcard.png" alt="주민등록증 예시" />
+              </div>
+              <div class="license-img">
+                <img src="/OCR/img/license.png" alt="운전면허증 예시" />
+              </div>
+            </div>
+            <!-- //신분증 이미지 예시 -->
+          </div>
+          <div class="list-box1 sbj_caution">
+            <ul class="list-dot">
+              <li>
+                신분증 촬영은 주민등록증, 운전면허증, 외국인등록증에 한하여
+                <b>반드시 실물(원본)로 촬영해주세요.</b>
+              </li>
+              <li>
+                모바일 신분증은 정부 공식 '모바일 신분증'이 휴대폰에 등록되어 있는 경우에만 사용할
+                수 있습니다.<b>(PASS앱 등 다른 신분증 불가)</b>
+              </li>
+              <li>현재 휴대폰에 등록된 모바일 신분증이 없다면 신분증 촬영을 이용해주세요.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="fixed-btn">
+          <div class="btn_wrap btn-new">
+            <button type="button" class="btn default blue" onclick="location.href='sbjcam.html'">
+              <span>신분증 촬영</span>
+            </button>
+            <button type="button" class="btn default mob-id"><span>모바일 신분증</span></button>
+          </div>
+        </div>
+
+        <button type="button" class="btn_close pop-close"><span>팝업닫기</span></button>
+      </article>
+    </div>
+    <div id="Sbjpop02" class="pop_wrap pop-new medium pop_double">
+      <article class="popup sbj_bottom mobsbj_pop">
+        <div class="pop_head">
+          <h3>모바일 신분증을 선택해주세요</h3>
+        </div>
+        <div class="pop_cont sbj_list sbj_nationalist">
+          <ul class="national_wrap">
+            <li class="sbj_nationalist">
+              <button type="button" class="sbj_nationaltit">내국인</button>
+            </li>
+            <li class="sbj_alienist">
+              <button type="button" class="sbj_nationaltit">외국인</button>
+            </li>
+          </ul>
+          <div class="btn-group4 bdt_none">
+            <ul class="btn-group4-group">
+              <li class="btn-group4-item">
+                <button type="button" class="btn-group4-btn ellipsis" title="선택됨">
+                  모바일 주민등록증
+                </button>
+              </li>
+              <li class="btn-group4-item">
+                <button type="button" class="btn-group4-btn ellipsis">모바일 운전면허증</button>
+              </li>
+              <li class="btn-group4-item">
+                <button type="button" class="btn-group4-btn ellipsis">모바일 국가보훈증</button>
+              </li>
+              <li class="btn-group4-item">
+                <button type="button" class="btn-group4-btn ellipsis sbj_foreignID">
+                  모바일 외국인등록증
+                </button>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <button type="button" class="btn_close pop-close sbjpop_close">
+          <span>팝업닫기</span>
+        </button>
+      </article>
+    </div>
+
+    <div id="Sbjpop03" class="pop_wrap pop-new medium pop_double">
+      <article class="popup sbj_bottom mobsbj_pop">
+        <div class="pop_head">
+          <h3>모바일 신분증을 선택해주세요</h3>
+        </div>
+        <div class="pop_cont sbj_list">
+          <div class="btn-group4 bdt_none">
+            <ul class="btn-group4-group">
+              <li class="btn-group4-item">
+                <button type="button" class="btn-group4-btn ellipsis" title="선택됨">
+                  모바일 외국인등록증
+                </button>
+              </li>
+              <li class="btn-group4-item">
+                <button type="button" class="btn-group4-btn ellipsis">모바일 국내거소신고증</button>
+              </li>
+              <li class="btn-group4-item">
+                <button type="button" class="btn-group4-btn ellipsis">모바일 영주증</button>
+              </li>
+            </ul>
+          </div>
+          <div class="btn-group4 bdt_none">
+            <ul class="btn-group4-group">
+              <li class="btn-group4-item">
+                <button type="button" class="btn-group4-btn ellipsis" title="선택됨">
+                  모바일 외국인등록증
+                </button>
+              </li>
+              <li class="btn-group4-item">
+                <button type="button" class="btn-group4-btn ellipsis">모바일 국내거소신고증</button>
+              </li>
+              <li class="btn-group4-item">
+                <button type="button" class="btn-group4-btn ellipsis">모바일 영주증</button>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <button type="button" class="btn_close pop-close sbjpop_close">
+          <span>팝업닫기</span>
+        </button>
+      </article>
+    </div>
+    <script>
+      $(document).ready(function () {
+        // 레이어팝업 최대 높이 600px 초과시 그라데이션 생성
+        var $gradpop = $('.sbj_bottom')
+        var $sbjpopcont = $gradpop.find('.pop_cont')
+        if ($gradpop.prop('scrollHeight') > 600) {
+          $('.gradient_over').css({
+            display: 'block',
+          })
+        } else {
+          $('.gradient_over').css({
+            display: 'none',
+          })
+        }
+
+        var $lastFocusedElement = null // 마지막 포커스 저장
+
+        // 팝업 오픈
+        var $sbjOpen = function (selector, keepFocus = false) {
+          // commonAccessDisable 함수가 정의되어 있어야 합니다.
+          commonAccessDisable($('#wrap'), 'modal')
+          commonAccessDisable($('#skipNavi'), 'modal')
+
+          if (!keepFocus) {
+            $lastFocusedElement = $(':focus')
+          }
+          $(selector)
+            .css('display', 'flex')
+            .hide()
+            .fadeIn(300, function () {
+              $(this)
+                .find('.popup')
+                .css({
+                  bottom: '-100%',
+                })
+                .animate(
+                  {
+                    bottom: '0',
+                  },
+                  100,
+                )
+            })
+            .addClass('is_active')
+
+          if (selector === '#Sbjpop02') {
+            commonAccessDisable($('#Sbjpop01'), 'modal')
+            $('#Sbjpop01').addClass('is_active').find('.popup').animate(
+              {
+                bottom: '0',
+              },
+              100,
+            )
+          } else if (selector === '#Sbjpop01') {
+            $('#Sbjpop02').removeClass('is_active').find('.popup').css({
+              bottom: '-100%',
+            })
+          }
+        }
+
+        // 팝업 닫기
+        var $sbjClose = function (selector) {
+          $(selector)
+            .find('.popup')
+            .animate(
+              {
+                bottom: '-100%',
+              },
+              100,
+              function () {
+                $(selector).fadeOut(200).removeClass('is_active')
+              },
+            )
+
+          if (selector === '#Sbjpop02') {
+            $('#Sbjpop01').removeClass('is_active').find('.popup').animate(
+              {
+                bottom: '0',
+              },
+              100,
+            )
+          }
+
+          if ($lastFocusedElement) {
+            $lastFocusedElement.focus()
+            $lastFocusedElement = null
+          }
+        }
+
+        $('#Sbjpop02 .sbjpop_close').on('click', function () {
+          commonAccessDisable($('#Sbjpop01'), 'modal')
+          $sbjClose($(this).parents('.pop_wrap'))
+          $sbjOpen('#Sbjpop01', true)
+          $('.btn-group4-item').removeClass('active')
+        })
+
+        $('#Sbjpop01 .mob-id').on('click', function () {
+          $lastFocusedElement = $(this)
+          $sbjOpen('#Sbjpop02', true)
+        })
+
+        $sbjOpen('#Sbjpop01')
+
+        $('#Sbjpop01 .pop-close').click(function () {
+          commonAccessDisable($('#wrap'), 'modal')
+          commonAccessDisable($('#skipNavi'), 'modal')
+          $('#Sbjpop01').css('display', 'none')
+        })
+
+        $('#Sbjpop02 .btn-group4-btn').click(function () {
+          $('#Sbjpop02 .btn-group4-item').removeClass('active')
+          $(this).closest('.btn-group4-item').addClass('active')
+        })
+      })
+
+      $(document).ready(function () {
+        // 내국인/외국인 버튼 클릭 이벤트 처리
+        $('#Sbjpop03 .sbj_nationaltit').on('click', function () {
+          // 버튼에 따라 active 클래스를 추가 및 내용 전환
+          $('#Sbjpop03 .sbj_nationaltit').removeClass('active') // 모든 버튼의 active 제거
+          $(this).addClass('active') // 클릭된 버튼에 active 추가
+
+          // 선택에 따라 내용을 보여줌
+          var isLocal = $(this).closest('.sbj_localist').length > 0
+          var $btnGroups = $('#Sbjpop03 .btn-group4') // 모든 버튼 그룹
+
+          if (isLocal) {
+            // 내국인 선택 시 첫 번째 버튼 그룹 보여주기
+            $btnGroups.eq(0).show()
+            $btnGroups.eq(1).hide()
+          } else {
+            // 외국인 선택 시 두 번째 버튼 그룹 보여주기
+            $btnGroups.eq(0).hide()
+            $btnGroups.eq(1).show()
+          }
+        })
+
+        // 초기 상태 설정: 내국인 선택
+        $('#Sbjpop03 .sbj_localist .sbj_nationaltit').trigger('click')
+
+        // Sbjpop02 내국인/외국인 토글
+        $('#Sbjpop02 .sbj_nationaltit').on('click', function () {
+          $('#Sbjpop02 .sbj_nationaltit').removeClass('active')
+          $(this).addClass('active')
+        })
+        $('#Sbjpop02 li.sbj_nationalist .sbj_nationaltit').addClass('active')
+      })
+    </script>
+  </body>
+</html>

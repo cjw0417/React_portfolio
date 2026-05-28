@@ -402,18 +402,14 @@
   &__bg {
     position: absolute;
     inset: 0;
-    background: $surface;
+    background: $surface center / cover no-repeat;
     transition: transform 0.5s ease;
 
     &::after {
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(
-        160deg,
-        rgba(var(--card-rgb), 0.18) 0%,
-        rgba(#000, 0.55) 100%
-      );
+      background: linear-gradient(to bottom, rgba(#000, 0.15) 0%, rgba(#000, 0.65) 100%);
     }
   }
 
@@ -461,6 +457,12 @@
     letter-spacing: 0.14em;
     text-transform: uppercase;
     color: var(--card-color, #{$accent});
+    margin-bottom: 4px;
+  }
+
+  &__period {
+    font-size: 0.7rem;
+    color: rgba($text, 0.5);
     margin-bottom: 6px;
   }
 

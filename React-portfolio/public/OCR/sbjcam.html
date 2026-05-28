@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <title>신분증 본인확인</title>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>신분증 본인확인</title>
+
+    <link rel="stylesheet" href="/OCR/css/reset.css" />
+
+    <link rel="stylesheet" href="https://ueds.shinhancard.com/conts/css/op.css" />
+    <link rel="stylesheet" href="https://ueds.shinhancard.com/conts/css/common.css" />
+    <link rel="stylesheet" href="https://ueds.shinhancard.com/conts/css/contents.css" />
+    <link rel="stylesheet" href="https://ueds.shinhancard.com/conts/css/libs/datapicker.css" />
+  </head>
+  <body>
+    <style>
+      /* 전체 영역 */
+      .sbjcam_wrap {
+        height: 100%;
+      }
+
+      /* 헤더 */
+      .sbjcam_head {
+        height: 80px;
+        border: none;
+        border-radius: 0;
+        padding: 24px 20px 17px 24px;
+        background: rgba(0, 0, 0, 0.7);
+      }
+      .sbjcam_head .logo {
+        padding-right: 30px;
+        font-weight: 700;
+        font-size: 18px;
+        line-height: 18px;
+        color: #111;
+      }
+      .sbjcam_head .logo a {
+        width: 128px;
+        height: 22px;
+        margin-top: 17px;
+      }
+
+      /* 컨텐츠 */
+      .sbjcam_cont {
+        height: 100px;
+        font-size: 18px;
+        line-height: 26px;
+        font-weight: 400;
+        text-align: center;
+        color: #ffffff;
+        background: rgba(0, 0, 0, 0.7);
+      }
+      .sbjcam_cont .sbjcam_contit p {
+        padding-top: 48px;
+      }
+
+      /* 프리뷰영역 */
+      .sbjcam_dimmed_top {
+        width: 100%;
+        height: 60%;
+        background: rgba(0, 0, 0, 0.7);
+      }
+
+      .sbjcam_wrap {
+        display: flex;
+        flex-direction: column;
+        flex: 1 1 auto;
+      }
+      .sbjcam_wrap .sbj_cam_inner {
+        position: relative;
+        display: flex;
+        background: url(/OCR/img/ico_cross.png) no-repeat center center transparent;
+        background-size: 32px;
+      }
+      .sbjcam_wrap .sbj_cam_inner::after {
+        content: '';
+        position: absolute;
+        width: 30px;
+        height: 100%;
+        right: 0;
+        background: rgba(0, 0, 0, 0.7);
+      }
+      .sbjcam_wrap .sbj_cam_inner::before {
+        content: '';
+        width: 30px;
+        background: rgba(0, 0, 0, 0.7);
+      }
+
+      .sbjcam_wrap .sbj_cam_inner .preview {
+        width: calc(100% - 60px);
+        padding-top: 56%;
+        border: none;
+      }
+      .sbjcam_wrap .sbj_cam_inner .preview::before {
+        content: '';
+        z-index: 15;
+        position: absolute;
+        width: 16px;
+        height: 16px;
+        right: 28px;
+        bottom: -2px;
+        background: url(/OCR/img/bottom_right.png) no-repeat;
+        background-size: cover;
+      }
+      .sbjcam_wrap .sbj_cam_inner .preview::after {
+        content: '';
+        z-index: 15;
+        position: absolute;
+        width: 16px;
+        height: 16px;
+        left: 28px;
+        bottom: -2px;
+        background: url(/OCR/img/bottom_left.png) no-repeat;
+        background-size: cover;
+      }
+
+      .sbjcam_wrap .sbj_cam_inner .sbjcam_border::before {
+        content: '';
+        z-index: 15;
+        position: absolute;
+        width: 16px;
+        height: 16px;
+        right: 28px;
+        top: -2px;
+        background: url(/OCR/img/top_right.png) no-repeat;
+        background-size: cover;
+      }
+      .sbjcam_wrap .sbj_cam_inner .sbjcam_border::after {
+        content: '';
+        z-index: 15;
+        position: absolute;
+        width: 16px;
+        height: 16px;
+        left: 28px;
+        top: -2px;
+        background: url(/OCR/img/top_left.png) no-repeat;
+        background-size: cover;
+      }
+
+      .sbjcam_dimmed_bottom {
+        width: 100%;
+        height: 60%;
+        background: rgba(0, 0, 0, 0.7);
+      }
+
+      /* 바텀 */
+      .sbjph_bottom {
+        background: rgba(0, 0, 0, 0.7);
+      }
+      .sbjph_bottom .sbjph_notice {
+        padding: 0 24px 16px 24px;
+      }
+      .sbjph_bottom .sbjph_notice li {
+        display: flex;
+        height: 48px;
+        justify-content: center;
+        padding: 12px 34px 11px 0;
+        padding-left: 60px;
+        flex-direction: column;
+        align-items: flex-start;
+        border-radius: 100px;
+        font-size: 12px;
+        color: #fff;
+        line-height: 18px;
+      }
+      .sbjph_bottom .sbjph_notice li + li {
+        margin-top: 8px;
+      }
+
+      .sbjph_bottom .sbjph_notice li:first-of-type {
+        background: url(/OCR/img/ico_id.png) no-repeat 24px center;
+        background-size: 24px;
+        background-color: rgba(0, 0, 0, 0.2);
+      }
+      .sbjph_bottom .sbjph_notice li:nth-of-type(2) {
+        background: url(/OCR/img/ico_no_light.png) no-repeat 24px center;
+        background-size: 24px;
+        background-color: rgba(0, 0, 0, 0.2);
+      }
+      .sbjph_bottom .sbjph_notice li:nth-of-type(3) {
+        background: url(/OCR/img/ico_back_dark.png) no-repeat 24px center;
+        background-size: 24px;
+        background-color: rgba(0, 0, 0, 0.2);
+      }
+
+      /* 신분증촬영 버튼 영역 */
+      .sbjcam_btn {
+        padding: 16px;
+        text-align: center;
+        background: rgba(0, 0, 0, 0.7);
+      }
+
+      /* 닫기버튼 */
+      .sbj_phclose {
+        position: absolute;
+        width: 24px;
+        height: 24px;
+        top: 40px;
+        right: 20px;
+        background: url(/OCR/img/close_white.png) no-repeat;
+        background-size: cover;
+      }
+    </style>
+    <div id="skipNavi">
+      <a href="#container">본문바로가기</a>
+    </div>
+
+    <div class="sbjcam_wrap">
+      <div class="sbjcam_head">
+        <h3 class="logo">
+          <a href="javascript:;">
+            <img
+              src="https://ueds.shinhancard.com/conts/images/common/240729_shinhancard_white.png"
+              alt="Shinhancard"
+            />
+          </a>
+        </h3>
+      </div>
+      <div class="sbjcam_cont">
+        <p>
+          신분증을 네모칸 안에 맞추어<br />
+          촬영해주세요
+        </p>
+      </div>
+
+      <div class="sbjcam_dimmed_top"></div>
+      <div class="sbjcam_wrap">
+        <div class="sbj_cam_inner">
+          <div class="preview"></div>
+          <div class="sbjcam_border"></div>
+        </div>
+      </div>
+      <div class="sbjcam_dimmed_bottom"></div>
+
+      <div class="sbjph_bottom">
+        <ul class="sbjph_notice">
+          <li class="txt">신분증은 반드시 실물(원본)로 촬영해주세요.</li>
+          <li class="txt">흔들리거나 빛이 반사되지 않도록 해주세요.</li>
+          <li class="txt">어두운 바닥에서 촬영해주세요.</li>
+        </ul>
+      </div>
+
+      <div class="sbjcam_btn btn_wrap btn-new">
+        <button type="button" class="btn default blue"><span>신분증 촬영</span></button>
+        <button type="button" class="btn default blue" onclick="location.href='sbjcam.html'">
+          <span>재촬영</span>
+        </button>
+      </div>
+      <button type="button" class="btn_close sbj_phclose" onclick="location.href='ocr_result.html'">
+        <span>팝업닫기</span>
+      </button>
+    </div>
+  </body>
+</html>
