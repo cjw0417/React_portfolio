@@ -29,7 +29,7 @@
     font-size: 0.85rem;
     letter-spacing: 0.05em;
     position: relative;
-    cursor: none;
+    cursor: pointer;
     transition: border-radius 0.2s;
     flex-shrink: 0;
 
@@ -76,7 +76,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    cursor: none;
+    cursor: pointer;
     flex-shrink: 0;
     transition: background 0.2s, border-radius 0.2s;
 

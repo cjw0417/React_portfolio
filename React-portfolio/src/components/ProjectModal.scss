@@ -145,7 +145,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    cursor: none;
+    cursor: pointer;
     z-index: 10;
     transition: background 0.2s, color 0.2s;
 
@@ -165,7 +165,7 @@
   border-radius: 4px;
   font-size: 0.82rem;
   font-weight: 600;
-  cursor: none;
+  cursor: pointer;
   transition: opacity 0.2s, background 0.2s;
 
   &--ghost {

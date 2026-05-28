@@ -110,42 +110,7 @@ const SKILL_DATA = [
   { category: 'AI',              items: ['Claude', 'Claude Code', 'Prompt Engineering'] },
 ]
 
-const isTouch = () => window.matchMedia('(hover: none)').matches
 
-const handleCardEnter = (e) => {
-  if (isTouch()) return
-  const card = e.currentTarget
-  const grid = card.closest('.project-grid')
-  if (!grid) return
-
-  const cardRect = card.getBoundingClientRect()
-  const gridRect = grid.getBoundingClientRect()
-
-  const deltaX = (gridRect.left + gridRect.width / 2) - (cardRect.left + cardRect.width / 2)
-  const deltaY = (gridRect.top + gridRect.height / 2) - (cardRect.top + cardRect.height / 2)
-
-  gsap.set(card, { zIndex: 100 })
-  gsap.to(card, {
-    x: deltaX,
-    y: deltaY,
-    scale: 1.6,
-    duration: 0.45,
-    ease: 'power3.out',
-  })
-}
-
-const handleCardLeave = (e) => {
-  if (isTouch()) return
-  const card = e.currentTarget
-  gsap.to(card, {
-    x: 0,
-    y: 0,
-    scale: 1,
-    duration: 0.4,
-    ease: 'power2.inOut',
-    onComplete: () => gsap.set(card, { zIndex: 1 }),
-  })
-}
 
 const handleProjectClick = (p) => {
   if (!p.link || p.link === '#') return
@@ -172,14 +137,6 @@ export default function ChatArea({ setActiveChannel, setVisibleChannels }) {
         onEnter: () => reveal(id),
       })
 
-      ScrollTrigger.create({
-        trigger: el,
-        start: 'top 30%',
-        end: 'bottom 30%',
-        onEnter:     () => setActiveChannel(id),
-        onEnterBack: () => setActiveChannel(id),
-      })
-
       gsap.fromTo(
         el.querySelectorAll('.message, .skill-embed, .project-embed, .contact-embed, .project-card'),
         { y: 18, opacity: 0 },
@@ -194,7 +151,24 @@ export default function ChatArea({ setActiveChannel, setVisibleChannels }) {
       )
     })
 
-    return () => ScrollTrigger.getAll().forEach(t => t.kill())
+    const updateActive = () => {
+      const threshold = window.innerHeight * 0.35
+      let active = CHANNELS[0].id
+      for (const { id } of CHANNELS) {
+        const el = document.getElementById(id)
+        if (!el) continue
+        if (el.getBoundingClientRect().top <= threshold) active = id
+      }
+      setActiveChannel(active)
+    }
+
+    window.addEventListener('scroll', updateActive, { passive: true })
+    updateActive()
+
+    return () => {
+      window.removeEventListener('scroll', updateActive)
+      ScrollTrigger.getAll().forEach(t => t.kill())
+    }
   }, [])
 
   return (
@@ -221,9 +195,9 @@ export default function ChatArea({ setActiveChannel, setVisibleChannels }) {
 
       {/* ─── #about-me ─── */}
       <section id="about-me" className="channel-section">
-        <ChannelDivider label="about-me" desc="저 어떤 사람인지 궁금하시면" />
+        <ChannelDivider label="about-me" desc="" />
         <Message time="오전 10:10">
-          네, 안녕하세요.
+          안녕하세요.
         </Message>
         <Message time="오전 10:10" grouped>
           (주)미디어포스 얼라이언스에서 퍼블리셔로 일하고 있는 <strong>조재우</strong>예요.
@@ -246,7 +220,7 @@ export default function ChatArea({ setActiveChannel, setVisibleChannels }) {
 
       {/* ─── #skills ─── */}
       <section id="skills" className="channel-section">
-        <ChannelDivider label="skills" desc="뭘 쓰는지 궁금하면" />
+        <ChannelDivider label="skills" desc="" />
         <Message time="오전 10:20">
           쓰는 기술들이에요 🛠️
         </Message>
@@ -260,13 +234,13 @@ export default function ChatArea({ setActiveChannel, setVisibleChannels }) {
 
       {/* ─── #projects ─── */}
       <section id="projects" className="channel-section channel-section--full">
-        <ChannelDivider label="projects" desc="작업한 것들" />
+        <ChannelDivider label="projects" desc="" />
         <Message time="오전 10:30">
           작업한 프로젝트들이에요 📎
         </Message>
         <div className="project-grid">
           {PROJECTS.map((p, i) => (
-            <div key={i} className="project-card" style={{ '--card-color': p.color }} onClick={() => handleProjectClick(p)} onMouseEnter={handleCardEnter} onMouseLeave={handleCardLeave}>
+            <div key={i} className="project-card" style={{ '--card-color': p.color }} onClick={() => handleProjectClick(p)}>
               <div className="project-card__bg" style={p.image ? { backgroundImage: `url(${p.image})` } : {}} />
               <div className="project-card__body">
                 <p className="project-card__category">{p.category}</p>
@@ -287,13 +261,8 @@ export default function ChatArea({ setActiveChannel, setVisibleChannels }) {
 
       {/* ─── #contact ─── */}
       <section id="contact" className="channel-section">
-        <ChannelDivider label="contact" desc="연락 주세요" />
-        <Message time="오전 10:40">
-          같이 뭔가 만들어보고 싶으시거나, 궁금한 거 있으면 편하게 연락주세요 📬
-        </Message>
-        <Message time="오전 10:40" grouped>
-          폼 쓰셔도 되고, 그냥 메일 주셔도 돼요. 빠르게 답장할게요 ㅎㅎ
-        </Message>
+        <ChannelDivider label="contact" desc="" />
+       
         <Message time="오전 10:41">
           <ContactEmbed />
         </Message>
@@ -301,9 +270,7 @@ export default function ChatArea({ setActiveChannel, setVisibleChannels }) {
           <a href="https://github.com/cjw04" target="_blank" rel="noreferrer">GitHub</a>{' · '}
           <a href="mailto:ridshfwk34@gmail.com">ridshfwk34@gmail.com</a>
         </Message>
-        <div className="chat-footer">
-          <p>© 2025 조재우. All rights reserved.</p>
-        </div>
+      
       </section>
     </div>
     </>

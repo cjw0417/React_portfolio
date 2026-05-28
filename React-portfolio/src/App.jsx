@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import Cursor from './components/Cursor'
 import ServerBar from './components/ServerBar'
 import ChannelSidebar from './components/ChannelSidebar'
 import ChatArea from './components/ChatArea'
@@ -12,7 +11,6 @@ function App() {
 
   return (
     <>
-      <Cursor />
       <div className="discord-layout">
         <ServerBar activeChannel={activeChannel} />
         <ChannelSidebar
