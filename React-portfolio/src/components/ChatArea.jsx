@@ -179,13 +179,13 @@ export default function ChatArea({ setActiveChannel, setVisibleChannels }) {
       <section id="welcome" className="channel-section">
         <ChannelDivider label="welcome" desc="들어오셨군요, 편하게 구경하세요 👋" />
         <Message time="오전 10:00">
-          안녕하세요, <strong>조재우</strong>예요 👋
+          안녕하세요, <strong>조재우</strong>입니다~ 👋
         </Message>
         <Message time="오전 10:00" grouped>
-          퍼블리셔로 일하고 있어요. 쉽게 말하면 디자인 시안 받아서 코드로 구현하는 사람이에요 ㅎ
+          퍼블리셔로 일하고 있어요. 쉽게 말하면 디자인 시안 받아서 코드로 구현하는 사람입니다.
         </Message>
         <Message time="오전 10:01" grouped>
-          요즘은 인터랙션이랑 애니메이션 쪽에 재미 붙여서 이것저것 만들어보고 있고요.
+          요즘은 인터랙션이랑 애니메이션 쪽에 재미 붙여서 이것저것 만들어보고 있고,
         </Message>
         <Message time="오전 10:02">
           스크롤 내리면서 구경해주세요 🙏
@@ -200,11 +200,11 @@ export default function ChatArea({ setActiveChannel, setVisibleChannels }) {
           안녕하세요.
         </Message>
         <Message time="오전 10:10" grouped>
-          (주)미디어포스 얼라이언스에서 퍼블리셔로 일하고 있는 <strong>조재우</strong>예요.
+          (주)미디어포스 얼라이언스에서 퍼블리셔로 일하고 있는 <strong>조재우</strong>입니다.
         </Message>
         <Message time="오전 10:11" grouped>
-          신한카드 운영으로 시작했는데 어쩌다 보니 금융권 프로젝트가 계속 이어지더라고요 ㅋㅋ<br />
-          덕분에 복잡한 UI 구조 다루는 건 꽤 익숙해졌어요.
+          신한카드 운영으로 시작했는데 어쩌다 보니 금융권 프로젝트가 계속 이어지는 덕분에<br />
+          복잡한 UI 구조 다루는 건 꽤 익숙해졌어요.
         </Message>
         <Message time="오전 10:12" grouped>
           마크업이 그냥 껍데기라는 생각은 없어요.<br />
@@ -228,7 +228,7 @@ export default function ChatArea({ setActiveChannel, setVisibleChannels }) {
           <SkillEmbed skills={SKILL_DATA} />
         </Message>
         <Message time="오전 10:21">
-          HTML/CSS가 베이스고요, 요즘은 React랑 GSAP 쓰는 프로젝트가 많아져서 점점 재밌어지고 있어요 ㅎ
+          HTML/CSS, Javascript가 베이스고, 요즘은 React/Vue 쓰는 프로젝트가 많아져서 점점 재밌어지고 있어요.
         </Message>
       </section>
 
@@ -268,7 +268,7 @@ export default function ChatArea({ setActiveChannel, setVisibleChannels }) {
         </Message>
         <Message time="오전 10:42">
           <a href="https://github.com/cjw04" target="_blank" rel="noreferrer">GitHub</a>{' · '}
-          <a href="mailto:ridshfwk34@gmail.com">ridshfwk34@gmail.com</a>
+          <a href="mailto:824621@naver.com">824621@naver.com</a>
         </Message>
       
       </section>
