@@ -6,6 +6,8 @@ export const CHANNELS = [
   { id: 'contact',  label: 'contact'  },
 ]
 
+const base = import.meta.env.BASE_URL
+
 export const PROJECTS = [
   {
     title: '신한카드 운영',
@@ -14,7 +16,7 @@ export const PROJECTS = [
     desc: '신한카드 웹 유지보수 운영 및 신규 서비스 퍼블리싱',
     tags: ['HTML', 'CSS', 'JavaScript', 'jQuery', 'Figma', 'Swiper'],
     color: '#0046ff',
-    image: '/shinhancard.png',
+    image: `${base}shinhancard.png`,
     linkType: 'url',
     link: 'https://www.shinhancard.com',
   },
@@ -25,9 +27,9 @@ export const PROJECTS = [
     desc: '비대면 신분증 인증 시스템 UI/UX 퍼블리싱',
     tags: ['HTML', 'CSS', 'JavaScript', 'jQuery', 'Figma'],
     color: '#eb459e',
-    image: '/OCR.png',
+    image: `${base}OCR.png`,
     linkType: 'mobile',
-    link: '/OCR/main.html',
+    link: `${base}OCR/main.html`,
   },
   {
     title: 'M4A 사내 홈페이지 리뉴얼',
@@ -36,7 +38,7 @@ export const PROJECTS = [
     desc: 'M4A 사내 홈페이지 전면 리뉴얼 퍼블리싱',
     tags: ['HTML', 'CSS', 'JavaScript', 'Figma'],
     color: '#57f287',
-    image: '/m4a.png',
+    image: `${base}m4a.png`,
     linkType: 'url',
     link: 'https://m4a.co.kr/html/Works.html',
   },
@@ -47,7 +49,7 @@ export const PROJECTS = [
     desc: 'NH Pay 글로벌 서비스 다국어 퍼블리싱',
     tags: ['다국어', 'Vue.js', 'SCSS'],
     color: '#fee75c',
-    image: '/nhcard.png',
+    image: `${base}nhcard.png`,
     linkType: 'url',
     link: 'https://card.nonghyup.com',
   },
