@@ -75,8 +75,10 @@ function AboutEmbed() {
       <div className="about-embed__section">
         <p className="about-embed__label">주요 경력</p>
         <div className="career-item">
-          <span className="career-item__period">2022~현재</span>
-          <span className="career-item__company">(주)미디어포스 얼라이언스 재직중</span>
+          <span className="career-item__period">2026.04~현재</span>
+          <span className="career-item__company">(주)미디어포스 얼라이언스 프리랜서 재직 중</span>
+          <span className="career-item__period">2022.02~2025.11</span>
+          <span className="career-item__company">(주)미디어포스 얼라이언스 퍼블리싱팀 주임</span>
         </div>
       </div>
       <div className="about-embed__section">
@@ -121,6 +123,7 @@ const handleProjectClick = (p) => {
   }
 }
 
+
 export default function ChatArea({ setActiveChannel, setVisibleChannels }) {
   const reveal = (id) =>
     setVisibleChannels(prev => prev.includes(id) ? prev : [...prev, id])
@@ -152,6 +155,14 @@ export default function ChatArea({ setActiveChannel, setVisibleChannels }) {
     })
 
     const updateActive = () => {
+      if (window.scrollY === 0) {
+        setActiveChannel(CHANNELS[0].id)
+        return
+      }
+      if (window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 2) {
+        setActiveChannel(CHANNELS[CHANNELS.length - 1].id)
+        return
+      }
       const threshold = window.innerHeight * 0.35
       let active = CHANNELS[0].id
       for (const { id } of CHANNELS) {
@@ -181,9 +192,6 @@ export default function ChatArea({ setActiveChannel, setVisibleChannels }) {
         <Message time="오전 10:00">
           안녕하세요, <strong>조재우</strong>입니다~ 👋
         </Message>
-        <Message time="오전 10:00" grouped>
-          퍼블리셔로 일하고 있어요. 쉽게 말하면 디자인 시안 받아서 코드로 구현하는 사람입니다.
-        </Message>
         <Message time="오전 10:01" grouped>
           요즘은 인터랙션이랑 애니메이션 쪽에 재미 붙여서 이것저것 만들어보고 있고,
         </Message>
@@ -211,7 +219,7 @@ export default function ChatArea({ setActiveChannel, setVisibleChannels }) {
           결국 사용자가 직접 보고 만지는 부분이라서, 꼼꼼하게 짚고 넘어가는 편이에요.
         </Message>
         <Message time="오전 10:13" grouped>
-          <blockquote className="about-quote">"디자인 시안이 들어오면 '어떻게 구현하지'보다 '어떻게 하면 더 잘 만들 수 있지'를 먼저 생각해요."</blockquote>
+          <blockquote className="about-quote">"디자인 시안이 들어오면 '어떻게 구현하지'보다 '어떻게 하면 더 꼼꼼하게 사용자의 편의성을 위해 잘 만들 수 있을까' 를 먼저 생각해요."</blockquote>
         </Message>
         <Message time="오전 10:14">
           <AboutEmbed />
@@ -222,13 +230,13 @@ export default function ChatArea({ setActiveChannel, setVisibleChannels }) {
       <section id="skills" className="channel-section">
         <ChannelDivider label="skills" desc="" />
         <Message time="오전 10:20">
-          쓰는 기술들이에요 🛠️
+          Skills
         </Message>
         <Message time="오전 10:20" grouped>
           <SkillEmbed skills={SKILL_DATA} />
         </Message>
         <Message time="오전 10:21">
-          HTML/CSS, Javascript가 베이스고, 요즘은 React/Vue 쓰는 프로젝트가 많아져서 점점 재밌어지고 있어요.
+          HTML/CSS, Javascript가 베이스고, 요즘은 React/Vue 쓰는 프로젝트가 많아져서 학습 및 실무 경험 중 입니다.
         </Message>
       </section>
 
@@ -236,7 +244,7 @@ export default function ChatArea({ setActiveChannel, setVisibleChannels }) {
       <section id="projects" className="channel-section channel-section--full">
         <ChannelDivider label="projects" desc="" />
         <Message time="오전 10:30">
-          작업한 프로젝트들이에요 📎
+          Projects
         </Message>
         <div className="project-grid">
           {PROJECTS.map((p, i) => (
