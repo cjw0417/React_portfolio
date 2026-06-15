@@ -11,7 +11,7 @@
   width: 18px;
   height: 18px;
   left: 50px;
-  background: url(/OCR/img/top_left.png) no-repeat;
+  background: url(../img/top_left.png) no-repeat;
   background-size: cover;
 }
 .new_idscan::after {
@@ -20,7 +20,7 @@
   width: 18px;
   height: 18px;
   right: 50px;
-  background: url(/OCR/img/top_right.png) no-repeat;
+  background: url(../img/top_right.png) no-repeat;
   background-size: cover;
 }
 
@@ -37,7 +37,7 @@
   height: 18px;
   left: 50px;
   bottom: 0;
-  background: url(/OCR/img/bottom_left.png) no-repeat;
+  background: url(../img/bottom_left.png) no-repeat;
   background-size: cover;
 }
 .new_idscan .license_scan::after {
@@ -47,7 +47,7 @@
   height: 18px;
   right: 50px;
   bottom: 0;
-  background: url(/OCR/img/bottom_right.png) no-repeat;
+  background: url(../img/bottom_right.png) no-repeat;
   background-size: cover;
 }
 
